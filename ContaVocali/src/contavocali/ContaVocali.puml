@@ -1,0 +1,44 @@
+@startuml
+actor Utente
+participant main
+entity DatiCondivisi
+
+Utente -> main ++ : start
+
+main -> Utente : Richiesta Input frase
+Utente -> main : Inserimento frase
+main -> Utente : Domanda vocale piu presente
+
+main -> ThVisualizza ** : new
+main -> ThVisualizza ++ : start
+
+main -> ThVocali_A ** : new
+main -> ThVocali_E ** : new
+main -> ThVocali_I ** : new
+main -> ThVocali_O ** : new
+main -> ThVocali_U ** : new
+
+main -> ThVocali_A ++ : start
+main -> ThVocali_E ++ : start
+main -> ThVocali_I ++ : start
+main -> ThVocali_O ++ : start
+main -> ThVocali_U ++ : start
+
+Note over main : Join ThVocali_A
+ThVocali_A -> main -- : Return
+Note over main : Join ThVocali_E
+ThVocali_E -> main -- : Return
+Note over main : Join ThVocali_I
+ThVocali_I -> main -- : Return
+Note over main : Join ThVocali_O
+ThVocali_O -> main -- : Return
+Note over main : Join ThVocali_U
+ThVocali_U -> main -- : Return
+Note over main : Join ThVisualizza
+ThVisualizza -> main -- : Return
+
+DatiCondivisi -> main : GetVocaleMax()
+
+main -> Utente -- : Vincita/Perdita
+
+@enduml
